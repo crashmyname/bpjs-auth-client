@@ -1,0 +1,790 @@
+
+---
+
+## FILE 2: README.html
+
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Service Client - Dokumentasi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: #1a1a2e;
+            color: #fff;
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        
+        .sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e94560;
+        }
+        
+        .sidebar nav a {
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            padding: 8px 0;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .sidebar nav a:hover {
+            color: #e94560;
+        }
+        
+        .main-content {
+            margin-left: 300px;
+            padding: 40px;
+            background: #fff;
+            min-height: 100vh;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #1a1a2e;
+        }
+        
+        h2 {
+            font-size: 28px;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e94560;
+            color: #1a1a2e;
+        }
+        
+        h3 {
+            font-size: 22px;
+            margin: 30px 0 15px;
+            color: #333;
+        }
+        
+        h4 {
+            font-size: 18px;
+            margin: 20px 0 10px;
+            color: #555;
+        }
+        
+        p {
+            margin: 15px 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        
+        .badge-php {
+            background: #787cb5;
+            color: #fff;
+        }
+        
+        .badge-test {
+            background: #4caf50;
+            color: #fff;
+        }
+        
+        .badge-license {
+            background: #ff9800;
+            color: #fff;
+        }
+        
+        pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background: #1a1a2e;
+            color: #fff;
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .note {
+            background: #e8f4fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .error {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .flow-diagram {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.8;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        
+        .step {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #e94560;
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .toc {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .toc ul li {
+            padding: 5px 0;
+        }
+        
+        .toc ul li a {
+            color: #e94560;
+            text-decoration: none;
+        }
+        
+        .toc ul li a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>📚 Dokumentasi</h2>
+        <nav>
+            <a href="#konsep">💡 Konsep</a>
+            <a href="#requirements">📋 Requirements</a>
+            <a href="#installasi">🚀 Installasi</a>
+            <a href="#quick-start">⚡ Quick Start</a>
+            <a href="#cara-kerja">🔄 Cara Kerja</a>
+            <a href="#konfigurasi">⚙️ Konfigurasi</a>
+            <a href="#penggunaan">📘 Penggunaan</a>
+            <a href="#api-reference">📚 API Reference</a>
+            <a href="#error-handling">🐛 Error Handling</a>
+            <a href="#testing">🧪 Testing</a>
+            <a href="#troubleshooting">🔧 Troubleshooting</a>
+        </nav>
+    </div>
+    
+    <div class="main-content">
+        <h1>🔐 Auth Service Client</h1>
+        
+        <p>
+            <span class="badge badge-php">PHP >= 8.1</span>
+            <span class="badge badge-test">Tests: 32 PASS ✅</span>
+            <span class="badge badge-license">MIT License</span>
+        </p>
+        
+        <p>Library autentikasi terpusat untuk microservices. <strong>Cukup install, tambah 1 baris middleware, beres!</strong></p>
+        
+        <div class="toc">
+            <h3>📖 Daftar Isi</h3>
+            <ul>
+                <li><a href="#konsep">Konsep</a></li>
+                <li><a href="#requirements">Requirements</a></li>
+                <li><a href="#installasi">Installasi</a></li>
+                <li><a href="#quick-start">Quick Start</a></li>
+                <li><a href="#cara-kerja">Cara Kerja</a></li>
+                <li><a href="#konfigurasi">Konfigurasi</a></li>
+                <li><a href="#penggunaan">Penggunaan</a></li>
+                <li><a href="#api-reference">API Reference</a></li>
+                <li><a href="#error-handling">Error Handling</a></li>
+                <li><a href="#testing">Testing</a></li>
+                <li><a href="#troubleshooting">Troubleshooting</a></li>
+            </ul>
+        </div>
+        
+        <!-- ========== KONSEP ========== -->
+        <h2 id="konsep">💡 Konsep</h2>
+        
+        <div class="flow-diagram">
+┌─────────────────┐
+│  User Service   │  ← Satu-satunya tempat login
+│     :8000       │     & database user
+└────────┬────────┘
+         │
+         │ Token diverifikasi ke sini
+         │
+┌────────┴──────────────────────────┐
+│                                    │
+│  ┌──────────┐    ┌──────────┐    │
+│  │   HRM    │    │  Ticket  │    │  ← Service lain TIDAK
+│  │  :8001   │    │  :8002   │    │    perlu database user
+│  └──────────┘    └──────────┘    │
+│                                    │
+│  User login SEKALI,               │
+│  bisa akses SEMUA service         │
+└────────────────────────────────────┘
+        </div>
+        
+        <div class="success">
+            <strong>✅ Keuntungan:</strong>
+            <ul>
+                <li>Single Sign-On (SSO) - login sekali akses semua</li>
+                <li>Tidak perlu database user di setiap service</li>
+                <li>Tidak perlu sharing JWT secret key</li>
+                <li>User management terpusat</li>
+                <li>Logout sekali langsung berpengaruh ke semua service</li>
+            </ul>
+        </div>
+        
+        <!-- ========== REQUIREMENTS ========== -->
+        <h2 id="requirements">📋 Requirements</h2>
+        
+        <table>
+            <tr><th>Requirement</th><th>Versi</th></tr>
+            <tr><td>PHP</td><td>>= 8.1</td></tr>
+            <tr><td>ext-curl</td><td>*</td></tr>
+            <tr><td>ext-json</td><td>*</td></tr>
+            <tr><td>Composer</td><td>2.x</td></tr>
+        </table>
+        
+        <!-- ========== INSTALLASI ========== -->
+        <h2 id="installasi">🚀 Installasi</h2>
+        
+        <h3>1. Clone/Download Library</h3>
+        <pre><code>cd /path/to/libraries
+git clone https://gitlab.bpjs.com/shared/auth-client.git
+cd auth-client
+composer install</code></pre>
+        
+        <h3>2. Install di Aplikasi Anda</h3>
+        <pre><code># Di project HRM
+cd /var/www/hrm
+composer config repositories.auth-client path "/path/to/libraries/auth-client"
+composer require bpjs/auth-client:dev-main
+
+# Di project Ticket
+cd /var/www/ticket
+composer config repositories.auth-client path "/path/to/libraries/auth-client"
+composer require bpjs/auth-client:dev-main</code></pre>
+        
+        <!-- ========== QUICK START ========== -->
+        <h2 id="quick-start">⚡ Quick Start</h2>
+        
+        <h3>1. Setup .env</h3>
+        <pre><code># .env di setiap aplikasi
+AUTH_SERVICE_URL=http://192.168.1.10:8000
+AUTH_APP_KEY=your_app_key
+AUTH_APP_SECRET=your_app_secret</code></pre>
+        
+        <h3>2. Tambahkan Middleware</h3>
+        <pre><code>&lt;?php
+// routes/api.php
+
+use Bpjs\AuthServiceClient\Middleware\AuthMiddlewareClient;
+
+// ✅ HANYA 3 BARIS!
+Api::group([AuthMiddlewareClient::class], function() {
+    Api::get('/payroll', [PayrollController::class, 'index']);
+    Api::post('/transaction', [TransactionController::class, 'store']);
+});</code></pre>
+        
+        <h3>3. Pakai User Data di Controller</h3>
+        <pre><code>&lt;?php
+
+class PayrollController
+{
+    public function index()
+    {
+        // ✅ User sudah ada di session
+        $user = $_SESSION['user'];
+        
+        echo "Welcome, " . $user['username'];
+        // Output: Welcome, admin
+    }
+}</code></pre>
+        
+        <div class="success">
+            <strong>🎉 Selesai!</strong> Tidak perlu kode autentikasi lagi!
+        </div>
+        
+        <!-- ========== CARA KERJA ========== -->
+        <h2 id="cara-kerja">🔄 Cara Kerja</h2>
+        
+        <h3>Flow Detail</h3>
+        
+        <div class="step">
+            <span class="step-number">1</span>
+            <strong>USER LOGIN</strong> (sekali)
+            <div class="flow-diagram">
+Browser ──POST──► User Service :8000/api/auth/login
+                      │
+                      ▼
+               Generate JWT Token
+                      │
+                      ▼
+Browser ◄──{ token: "eyJ...", user: {...} }── User Service</div>
+        </div>
+        
+        <div class="step">
+            <span class="step-number">2</span>
+            <strong>AKSES HRM</strong>
+            <div class="flow-diagram">
+Browser ──GET──► HRM Service :8001/api/payroll
+  Header: Authorization: Bearer eyJ...</div>
+        </div>
+        
+        <div class="step">
+            <span class="step-number">3</span>
+            <strong>MIDDLEWARE VERIFIKASI</strong>
+            <div class="flow-diagram">
+AuthMiddlewareClient::handle()
+    │
+    ▼
+Ambil token dari header
+    │
+    ▼
+HTTP POST ke User Service
+  ► /api/auth/verify-token
+    │
+    ▼
+User Service cek token
+    │
+    ▼
+Return user data {id, username, roles, permissions}
+    │
+    ▼
+Simpan di $_SESSION['user']
+    │
+    ▼
+Lanjut ke Controller</div>
+        </div>
+        
+        <div class="note">
+            <strong>💡 Dengan Cache:</strong> Request kedua dengan token yang sama akan langsung ambil dari cache, tanpa HTTP request ke User Service (lebih cepat 200x!)
+        </div>
+        
+        <!-- ========== KONFIGURASI ========== -->
+        <h2 id="konfigurasi">⚙️ Konfigurasi</h2>
+        
+        <h3>Environment Variables</h3>
+        
+        <table>
+            <tr>
+                <th>Variable</th>
+                <th>Required</th>
+                <th>Default</th>
+                <th>Deskripsi</th>
+            </tr>
+            <tr>
+                <td><code>AUTH_SERVICE_URL</code></td>
+                <td>Ya</td>
+                <td><code>http://localhost:8000</code></td>
+                <td>URL User Service</td>
+            </tr>
+            <tr>
+                <td><code>AUTH_APP_KEY</code></td>
+                <td>Ya</td>
+                <td>-</td>
+                <td>App Key dari User Service</td>
+            </tr>
+            <tr>
+                <td><code>AUTH_APP_SECRET</code></td>
+                <td>Ya</td>
+                <td>-</td>
+                <td>App Secret dari User Service</td>
+            </tr>
+            <tr>
+                <td><code>AUTH_TIMEOUT</code></td>
+                <td>Tidak</td>
+                <td><code>30</code></td>
+                <td>Timeout HTTP request (detik)</td>
+            </tr>
+            <tr>
+                <td><code>AUTH_MAX_RETRIES</code></td>
+                <td>Tidak</td>
+                <td><code>3</code></td>
+                <td>Max retry kalau gagal</td>
+            </tr>
+            <tr>
+                <td><code>AUTH_TOKEN_SOURCE</code></td>
+                <td>Tidak</td>
+                <td><code>bearer</code></td>
+                <td>Sumber token: bearer, cookie, header, query</td>
+            </tr>
+            <tr>
+                <td><code>AUTH_COOKIE_NAME</code></td>
+                <td>Tidak</td>
+                <td><code>token</code></td>
+                <td>Nama cookie (jika pakai cookie)</td>
+            </tr>
+        </table>
+        
+        <!-- ========== PENGGUNAAN ========== -->
+        <h2 id="penggunaan">📘 Penggunaan</h2>
+        
+        <h3>A. Sebagai Middleware (Cara Paling Simpel)</h3>
+        <pre><code>&lt;?php
+// routes/api.php
+
+use Bpjs\AuthServiceClient\Middleware\AuthMiddlewareClient;
+
+// Route public (tanpa middleware)
+Api::post('/auth/login', [AuthController::class, 'login']);
+
+// Route protected (dengan middleware)
+Api::group([AuthMiddlewareClient::class], function() {
+    
+    Api::get('/dashboard', [DashboardController::class, 'index']);
+    Api::get('/payroll', [PayrollController::class, 'index']);
+    Api::post('/transaction', [TransactionController::class, 'store']);
+    
+});</code></pre>
+        
+        <h3>B. User Data di Controller</h3>
+        <pre><code>&lt;?php
+
+class PayrollController
+{
+    public function index()
+    {
+        // User dari session
+        $user = $_SESSION['user'];
+        $userId = $_SESSION['user_id'];
+        $username = $_SESSION['username'];
+        $permissions = $_SESSION['permissions'];
+        
+        // Cek permission
+        if (!in_array('payroll_view', $permissions)) {
+            return Response::json(['error' => 'Forbidden'], 403);
+        }
+        
+        // Bisnis logic
+        $data = Payroll::where('user_id', $userId)->get();
+        
+        return Response::json(['data' => $data]);
+    }
+}</code></pre>
+        
+        <h3>C. Cek Permission & Menu</h3>
+        <pre><code>&lt;?php
+
+use Bpjs\AuthServiceClient\AuthServiceClient;
+
+$auth = new AuthServiceClient([...]);
+
+// Cek menu akses
+if ($auth->checkMenuAccess($userId, 'payroll')) {
+    echo "&lt;a href='/payroll'&gt;Payroll&lt;/a&gt;";
+}
+
+// Cek permission
+if ($auth->hasPermission($userId, 'employee_edit')) {
+    echo "&lt;button&gt;Edit&lt;/button&gt;";
+}
+
+// Ambil semua menu
+$menus = $auth->getUserMenus($userId, 'hrm');
+foreach ($menus as $menu) {
+    echo $menu['name'];
+}</code></pre>
+        
+        <h3>D. Frontend (JavaScript)</h3>
+        <pre><code>// Login
+async function login(username, password) {
+    const res = await fetch('http://192.168.1.10:8000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+    });
+    
+    const data = await res.json();
+    localStorage.setItem('token', data.data.token);
+    return data;
+}
+
+// Akses API dengan token
+async function fetchPayroll() {
+    const token = localStorage.getItem('token');
+    
+    const res = await fetch('http://192.168.1.10:8001/api/payroll', {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+    
+    if (res.status === 401) {
+        window.location.href = '/login';
+    }
+    
+    return res.json();
+}</code></pre>
+        
+        <!-- ========== API REFERENCE ========== -->
+        <h2 id="api-reference">📚 API Reference</h2>
+        
+        <h3>AuthServiceClient Methods</h3>
+        
+        <table>
+            <tr>
+                <th>Method</th>
+                <th>Deskripsi</th>
+                <th>Return</th>
+            </tr>
+            <tr>
+                <td><code>verifyToken(string $token)</code></td>
+                <td>Verifikasi token ke User Service</td>
+                <td><code>array|null</code></td>
+            </tr>
+            <tr>
+                <td><code>login(string $username, string $password)</code></td>
+                <td>Login user</td>
+                <td><code>array</code></td>
+            </tr>
+            <tr>
+                <td><code>logout(string $token)</code></td>
+                <td>Logout user</td>
+                <td><code>bool</code></td>
+            </tr>
+            <tr>
+                <td><code>refreshToken(string $refreshToken)</code></td>
+                <td>Refresh token expired</td>
+                <td><code>array</code></td>
+            </tr>
+            <tr>
+                <td><code>getUserMenus(int $userId, ?string $appCode)</code></td>
+                <td>Ambil menu user</td>
+                <td><code>array</code></td>
+            </tr>
+            <tr>
+                <td><code>checkMenuAccess(int $userId, string $menuCode)</code></td>
+                <td>Cek akses menu</td>
+                <td><code>bool</code></td>
+            </tr>
+            <tr>
+                <td><code>hasPermission(int $userId, string $permission)</code></td>
+                <td>Cek permission user</td>
+                <td><code>bool</code></td>
+            </tr>
+        </table>
+        
+        <h3>Exceptions</h3>
+        
+        <table>
+            <tr>
+                <th>Exception</th>
+                <th>HTTP Code</th>
+                <th>Deskripsi</th>
+            </tr>
+            <tr>
+                <td><code>AuthenticationException</code></td>
+                <td>401</td>
+                <td>Auth gagal</td>
+            </tr>
+            <tr>
+                <td><code>TokenExpiredException</code></td>
+                <td>401</td>
+                <td>Token expired</td>
+            </tr>
+            <tr>
+                <td><code>NetworkException</code></td>
+                <td>500</td>
+                <td>Network error / User Service down</td>
+            </tr>
+            <tr>
+                <td><code>UnauthorizedException</code></td>
+                <td>403</td>
+                <td>Tidak diizinkan</td>
+            </tr>
+        </table>
+        
+        <!-- ========== ERROR HANDLING ========== -->
+        <h2 id="error-handling">🐛 Error Handling</h2>
+        
+        <h3>Response Format</h3>
+        
+        <h4>Sukses (200)</h4>
+        <pre><code>{
+    "status": "success",
+    "data": {
+        "id": 1,
+        "username": "admin",
+        "roles": ["admin"],
+        "permissions": ["payroll_view"]
+    }
+}</code></pre>
+        
+        <h4>Token Tidak Ditemukan (401)</h4>
+        <pre><code>{
+    "status": 401,
+    "message": "Token tidak ditemukan",
+    "error": "unauthorized"
+}</code></pre>
+        
+        <h4>Token Expired (401)</h4>
+        <pre><code>{
+    "status": 401,
+    "message": "Token expired",
+    "error": "token_expired",
+    "code": "token_expired"
+}</code></pre>
+        
+        <h4>Forbidden (403)</h4>
+        <pre><code>{
+    "status": 403,
+    "message": "Anda tidak memiliki akses",
+    "error": "forbidden"
+}</code></pre>
+        
+        <!-- ========== TROUBLESHOOTING ========== -->
+        <h2 id="troubleshooting">🔧 Troubleshooting</h2>
+        
+        <div class="warning">
+            <strong>⚠️ Token tidak ditemukan</strong>
+            <p><strong>Penyebab:</strong> Token tidak dikirim atau format salah</p>
+            <p><strong>Solusi:</strong> Pastikan header Authorization dikirim dengan format <code>Bearer &lt;token&gt;</code></p>
+        </div>
+        
+        <div class="error">
+            <strong>❌ cURL Error: Failed to connect</strong>
+            <p><strong>Penyebab:</strong> User Service tidak bisa dihubungi</p>
+            <p><strong>Solusi:</strong></p>
+            <ol>
+                <li>Cek User Service running: <code>curl http://192.168.1.10:8000/health</code></li>
+                <li>Cek firewall</li>
+                <li>Cek env <code>AUTH_SERVICE_URL</code></li>
+            </ol>
+        </div>
+        
+        <div class="warning">
+            <strong>⚠️ Invalid token</strong>
+            <p><strong>Penyebab:</strong> Token salah atau sudah expired</p>
+            <p><strong>Solusi:</strong> Login ulang untuk mendapatkan token baru</p>
+        </div>
+        
+        <hr>
+        
+        <p style="text-align: center; margin-top: 50px; color: #999;">
+            &copy; 2024 BPJS Development Team | MIT License
+        </p>
+    </div>
+</body>
+</html>
