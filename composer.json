@@ -1,0 +1,44 @@
+{
+    "name": "bpjs/auth-client",
+    "description": "Shared auth client for all apps",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Bpjs\\AuthServiceClient\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Fadli Azka Prayogi",
+            "email": "fadliazkaprayogi1@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "monolog/monolog": "^2.0",
+        "psr/simple-cache": "^1.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.4",
+        "phpunit/phpunit": "10.0"
+    },
+     "autoload-dev": {
+        "psr-4": {
+            "Bpjs\\AuthServiceClient\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-text",
+        "check-style": "phpcs src tests",
+        "fix-style": "phpcbf src tests"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "prefer-stable": true
+}
