@@ -19,17 +19,16 @@ class AuthMiddlewareClient
      */
     public function __construct()
     {
-        // Auto-detect config dari environment
         $this->authClient = new AuthServiceClient([
-            'base_url' => getenv('AUTH_SERVICE_URL') ?: 'http://localhost:8000',
-            'app_key' => getenv('AUTH_APP_KEY') ?: getenv('APP_KEY') ?: '',
-            'app_secret' => getenv('AUTH_APP_SECRET') ?: getenv('APP_SECRET') ?: '',
-            'timeout' => (int)(getenv('AUTH_TIMEOUT') ?: 30),
-            'max_retries' => (int)(getenv('AUTH_MAX_RETRIES') ?: 3),
+            'base_url' => $this->env('AUTH_SERVICE_URL', 'http://localhost:8000'),
+            'app_key' => $this->env('AUTH_APP_KEY', $this->env('APP_KEY', '')),
+            'app_secret' => $this->env('AUTH_APP_SECRET', $this->env('APP_SECRET', '')),
+            'timeout' => (int)$this->env('AUTH_TIMEOUT', '30'),
+            'max_retries' => (int)$this->env('AUTH_MAX_RETRIES', '3'),
         ]);
         
         $this->config = [
-            'redirect_url' => getenv('AUTH_REDIRECT_URL') ?: '/login',
+            'redirect_url' => $this->env('AUTH_REDIRECT_URL', '/login'),
             'exclude_routes' => [
                 '/login',
                 '/logout', 
@@ -37,11 +36,44 @@ class AuthMiddlewareClient
                 '/api/public/*',
                 '/api/auth/*',
             ],
-            'token_source' => getenv('AUTH_TOKEN_SOURCE') ?: 'bearer',
-            'cookie_name' => getenv('AUTH_COOKIE_NAME') ?: 'token',
-            'header_name' => getenv('AUTH_HEADER_NAME') ?: 'X-Auth-Token',
+            'token_source' => $this->env('AUTH_TOKEN_SOURCE', 'bearer'),
+            'cookie_name' => $this->env('AUTH_COOKIE_NAME', 'token'),
+            'header_name' => $this->env('AUTH_HEADER_NAME', 'X-Auth-Token'),
             'auto_refresh' => true,
         ];
+    }
+    
+    /**
+     *  Helper: Get env variable (support both env() and getenv())
+     */
+    private function env(string $key, string $default = ''): string
+    {
+        // 1. Coba fungsi env() custom (framework)
+        if (function_exists('env')) {
+            $value = env($key);
+            if ($value !== null && $value !== '') {
+                return (string)$value;
+            }
+        }
+        
+        // 2. Coba getenv() PHP native
+        $value = getenv($key);
+        if ($value !== false && $value !== '') {
+            return (string)$value;
+        }
+        
+        // 3. Coba $_ENV superglobal
+        if (isset($_ENV[$key]) && $_ENV[$key] !== '') {
+            return (string)$_ENV[$key];
+        }
+        
+        // 4. Coba $_SERVER superglobal
+        if (isset($_SERVER[$key]) && $_SERVER[$key] !== '') {
+            return (string)$_SERVER[$key];
+        }
+        
+        // 5. Return default
+        return $default;
     }
     
     /**
@@ -149,7 +181,6 @@ class AuthMiddlewareClient
     private function isExcludedRoute(string $route): bool
     {
         foreach ($this->config['exclude_routes'] as $pattern) {
-            // Support wildcard
             if (str_ends_with($pattern, '*')) {
                 $prefix = rtrim($pattern, '*');
                 if (str_starts_with($route, $prefix)) {
@@ -173,7 +204,6 @@ class AuthMiddlewareClient
         $_SESSION['roles'] = $userData['roles'] ?? [];
         $_SESSION['permissions'] = $userData['permissions'] ?? [];
         
-        // Juga simpan di global
         $GLOBALS['auth_user'] = $userData;
     }
     
@@ -182,8 +212,6 @@ class AuthMiddlewareClient
      */
     private function checkRoutePermission(string $route, array $userData): void
     {
-        // Optional: Cek permission berdasarkan route
-        // Bisa dikonfigurasi via env atau config file
         $permissionMap = [
             '/api/payroll' => 'payroll_view',
             '/api/employee' => 'employee_view',
@@ -204,7 +232,6 @@ class AuthMiddlewareClient
      */
     private function unauthorized(string $message = 'Unauthorized'): never
     {
-        // Clear any output buffer
         if (ob_get_level()) {
             ob_clean();
         }
@@ -243,7 +270,6 @@ class AuthMiddlewareClient
      */
     private function handleTokenExpired(): never
     {
-        // Auto refresh
         if ($this->config['auto_refresh']) {
             $refreshToken = $_COOKIE['refresh_token'] ?? $_POST['refresh_token'] ?? null;
             
@@ -251,7 +277,6 @@ class AuthMiddlewareClient
                 try {
                     $newTokens = $this->authClient->refreshToken($refreshToken);
                     
-                    // Set new cookies
                     setcookie(
                         $this->config['cookie_name'],
                         $newTokens['token'],
@@ -274,10 +299,8 @@ class AuthMiddlewareClient
                         );
                     }
                     
-                    // Update session
                     $_SESSION['user'] = $newTokens['user'] ?? [];
                     
-                    // Retry request
                     header('Location: ' . $_SERVER['REQUEST_URI']);
                     exit;
                     
@@ -287,10 +310,8 @@ class AuthMiddlewareClient
             }
         }
         
-        // Clear session
         session_destroy();
         
-        // Return expired response
         http_response_code(401);
         header('Content-Type: application/json');
         

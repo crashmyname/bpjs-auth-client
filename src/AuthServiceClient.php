@@ -24,12 +24,39 @@ class AuthServiceClient
      */
     public function __construct(array $config = [], ?CacheManager $cache = null)
     {
-        $this->baseUrl = rtrim($config['base_url'] ?? getenv('AUTH_SERVICE_URL') ?: 'http://localhost:8000', '/');
-        $this->appKey = $config['app_key'] ?? getenv('AUTH_APP_KEY') ?: '';
-        $this->appSecret = $config['app_secret'] ?? getenv('AUTH_APP_SECRET') ?: '';
-        $this->timeout = (int)($config['timeout'] ?? 30);
-        $this->maxRetries = (int)($config['max_retries'] ?? 3);
+        $this->baseUrl = rtrim(
+            $config['base_url'] ?? $this->env('AUTH_SERVICE_URL', 'http://localhost:8000'), 
+            '/'
+        );
+        $this->appKey = $config['app_key'] ?? $this->env('AUTH_APP_KEY', '');
+        $this->appSecret = $config['app_secret'] ?? $this->env('AUTH_APP_SECRET', '');
+        $this->timeout = (int)($config['timeout'] ?? $this->env('AUTH_TIMEOUT', '30'));
+        $this->maxRetries = (int)($config['max_retries'] ?? $this->env('AUTH_MAX_RETRIES', '3'));
         $this->cache = $cache ?? new CacheManager();
+    }
+
+    private function env(string $key, string $default = ''): string
+    {
+        // Coba fungsi env() custom framework dulu
+        if (function_exists('env')) {
+            $value = env($key);
+            if ($value !== null && $value !== '') {
+                return (string)$value;
+            }
+        }
+        
+        // Fallback ke getenv()
+        $value = getenv($key);
+        if ($value !== false && $value !== '') {
+            return (string)$value;
+        }
+        
+        // Coba $_ENV
+        if (isset($_ENV[$key]) && $_ENV[$key] !== '') {
+            return (string)$_ENV[$key];
+        }
+        
+        return $default;
     }
     
     /**
