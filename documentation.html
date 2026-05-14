@@ -369,22 +369,14 @@
         <!-- ========== INSTALLASI ========== -->
         <h2 id="installasi">🚀 Installasi</h2>
         
-        <h3>1. Clone/Download Library</h3>
-        <pre><code>cd /path/to/libraries
-git clone https://gitlab.bpjs.com/shared/auth-client.git
-cd auth-client
-composer install</code></pre>
-        
-        <h3>2. Install di Aplikasi Anda</h3>
+        <h3>1. Install di Aplikasi Anda</h3>
         <pre><code># Di project HRM
 cd /var/www/hrm
-composer config repositories.auth-client path "/path/to/libraries/auth-client"
-composer require bpjs/auth-client:dev-main
+composer require bpjs/auth-client
 
 # Di project Ticket
 cd /var/www/ticket
-composer config repositories.auth-client path "/path/to/libraries/auth-client"
-composer require bpjs/auth-client:dev-main</code></pre>
+composer require bpjs/auth-client</code></pre>
         
         <!-- ========== QUICK START ========== -->
         <h2 id="quick-start">⚡ Quick Start</h2>
