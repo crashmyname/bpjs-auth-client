@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'bpjs/auth-client',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '3099d7b3f669c9ab9f4492f5d7622afdb440ece0',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,56 +11,11 @@
     ),
     'versions' => array(
         'bpjs/auth-client' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '3099d7b3f669c9ab9f4492f5d7622afdb440ece0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'cordoval/hamcrest-php' => array(
-            'dev_requirement' => true,
-            'replaced' => array(
-                0 => '*',
-            ),
-        ),
-        'davedevelopment/hamcrest-php' => array(
-            'dev_requirement' => true,
-            'replaced' => array(
-                0 => '*',
-            ),
-        ),
-        'hamcrest/hamcrest-php' => array(
-            'pretty_version' => 'v2.1.1',
-            'version' => '2.1.1.0',
-            'reference' => 'f8b1c0173b22fa6ec77a81fe63e5b01eba7e6487',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../hamcrest/hamcrest-php',
-            'aliases' => array(),
-            'dev_requirement' => true,
-        ),
-        'kodova/hamcrest-php' => array(
-            'dev_requirement' => true,
-            'replaced' => array(
-                0 => '*',
-            ),
-        ),
-        'mockery/mockery' => array(
-            'pretty_version' => '1.6.12',
-            'version' => '1.6.12.0',
-            'reference' => '1f4efdd7d3beafe9807b08156dfcb176d18f1699',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../mockery/mockery',
-            'aliases' => array(),
-            'dev_requirement' => true,
-        ),
-        'monolog/monolog' => array(
-            'pretty_version' => '2.11.0',
-            'version' => '2.11.0.0',
-            'reference' => '37308608e599f34a1a4845b16440047ec98a172a',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../monolog/monolog',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -153,30 +108,6 @@
             'install_path' => __DIR__ . '/../phpunit/phpunit',
             'aliases' => array(),
             'dev_requirement' => true,
-        ),
-        'psr/log' => array(
-            'pretty_version' => '3.0.2',
-            'version' => '3.0.2.0',
-            'reference' => 'f16e1d5863e37f8d8c2a01719f5b34baa2b714d3',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../psr/log',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'psr/log-implementation' => array(
-            'dev_requirement' => false,
-            'provided' => array(
-                0 => '1.0.0 || 2.0.0 || 3.0.0',
-            ),
-        ),
-        'psr/simple-cache' => array(
-            'pretty_version' => '1.0.1',
-            'version' => '1.0.1.0',
-            'reference' => '408d5eafb83c57f6365a3ca330ff23aa4a5fa39b',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../psr/simple-cache',
-            'aliases' => array(),
-            'dev_requirement' => false,
         ),
         'sebastian/cli-parser' => array(
             'pretty_version' => '2.0.1',

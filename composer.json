@@ -18,12 +18,9 @@
     "require": {
         "php": ">=8.0",
         "ext-curl": "*",
-        "ext-json": "*",
-        "monolog/monolog": "^2.0",
-        "psr/simple-cache": "^1.0"
+        "ext-json": "*"
     },
     "require-dev": {
-        "mockery/mockery": "^1.4",
         "phpunit/phpunit": "10.0"
     },
      "autoload-dev": {
@@ -33,9 +30,7 @@
     },
     "scripts": {
         "test": "phpunit",
-        "test-coverage": "phpunit --coverage-text",
-        "check-style": "phpcs src tests",
-        "fix-style": "phpcbf src tests"
+        "test-coverage": "phpunit --coverage-text"
     },
     "config": {
         "sort-packages": true
